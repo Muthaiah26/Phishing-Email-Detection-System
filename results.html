@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detection Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-size: cover;
+            background: linear-gradient(135deg, #67696d, #78e2d1);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px;  
+        }
+        @keyframes fadeInZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .container {
+            background-color: #edf4f5;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;  
+            margin-top: 80px;
+            text-align: center;
+            align-items: left;
+            animation: fadeInZoom 1s ease-out;
+        }
+        
+        h1 {
+            font-size: 2em;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .results {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: space-between;
+        }
+        
+        .result-card {
+            background:url('static/images/back.jpg');
+            background-size: cover;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;  
+            max-width: 45%; 
+        }
+        @media (max-width: 768px) {
+            .result-card {
+                max-width: 100%; 
+            }
+        }
+        .result-card h3 {
+            color: #108de0;
+            margin-bottom: 10px;
+        }
+        
+        .result-card p {
+            font-size: 1.1em;
+            color: #edf1f5;
+            margin-bottom: 8px;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #000000;
+            z-index: 1000;
+            display: flex;
+            max-height: 80px;
+            align-items: center; 
+            padding: 0 20px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+            animation: fadeInZoom 1s ease-out;
+        
+        }
+        
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center; 
+            justify-content: right;
+            margin-right: 10px;
+            flex-grow: 1;
+        }
+        
+        .navbar ul li {
+            margin: 0 10px; 
+        }
+        
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+        }
+        
+        .navbar ul li a:hover {
+            background-color: #575757;
+        }
+        
+        .logo {
+            max-height: 50px; 
+            width: auto; 
+            margin-right: 15px;
+            margin-left: 20px;
+        }
+        .back-btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            align-items: center;
+            font-size: 1em;  
+            max-width: 100%;  
+            white-space: nowrap; 
+            word-wrap: break-word; 
+        }
+        
+        .back-btn:hover {
+            background-color: #2980b9;
+        }
+        .back-btn:hover {
+            background-color: #2980b9;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="/static/images/logo.png" alt="logo">
+
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Sign up</a></li>
+          <li><a href="/services">Tool</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    <div class="container">
+        <h1>Phishing Email Analysis Results</h1>
+        <a href="/services" class="back-btn">Back to Home</a>
+        
+        <div class="results">
+            {% for email in results %}
+                <div class="result-card">
+                    <h3>Subject: {{ email.subject }}</h3>
+                    <p><strong>Phishing Keywords Detected:</strong> {{ email.analysis.phishing_keywords_detected }}</p>
+                    <p><strong>Suspicious URLs:</strong> {{ email.analysis.suspicious_urls }}</p>
+                    <p><strong>Total URLs:</strong> {{ email.analysis.total_urls }}</p>
+                    <p><strong>Phishing Score:</strong>{{ email.analysis.phishing_score }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

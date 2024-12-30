@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Email Detection Tool</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f1f5;
+            padding: 0;
+            line-height: 1.6;
+            color: #111010;
+        }
+        @keyframes fadeInZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #000000;
+            z-index: 1000;
+            display: flex;
+            max-height: 80px;
+            align-items: center; 
+            padding: 0 20px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+            animation: fadeInZoom 1s ease-out;
+
+        }
+    
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center; 
+            justify-content: right;
+            margin-right: 10px;
+            flex-grow: 1;
+        }
+    
+        .navbar ul li {
+            margin: 0 10px; 
+        }
+    
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+        }
+    
+        .navbar ul li a:hover {
+            background-color: #575757;
+        }
+    
+        .logo {
+            max-height: 50px; 
+            width: auto; 
+            margin-right: 15px;
+            margin-left: 20px;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin: 20px 0;
+        }
+
+        .content-section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #0e0d0d;
+            border-bottom: 2px solid #00f2fe;
+            display: inline-block;
+        }
+
+        .features, .problems {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #fff;
+            background-image: url('/static/images/features.jpg');
+            background-size: cover;
+            padding: 30px;
+            color: #0e0d0d;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        #how-it-works {
+          
+            padding: 50px 20px;
+            text-align: left;
+        }
+    
+        #how-it-works h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+    
+        #how-it-works ol {
+            list-style-type: none; 
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column; 
+            gap: 20px; 
+        }
+    
+        #how-it-works ol li {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        #how-it-works ol li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Slight hover effect */
+        }
+    
+        #how-it-works ol li::before {
+            content: counter(step);
+            counter-increment:step;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); 
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+    
+        #how-it-works p {
+            font-size: 1rem;
+            color: #555;
+            margin: 0;
+            text-align: left;
+            line-height: 1.6;
+        }
+    
+        @media (max-width: 768px) {
+            #how-it-works ol li {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+    
+            #how-it-works ol li::before {
+                margin-bottom: 10px;
+            }
+    
+            #how-it-works p {
+                text-align: center;
+            }
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .features, .problems {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+       
+        <img src="/static/images/logo.png" alt="logo">
+       
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Sign up</a></li>
+          <li><a href="/services">Tool</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+
+    <section class="hero" id="home">
+        <h1>Phishing Email Detection Tool</h1>
+        <p>Protect your inbox from phishing attacks with advanced email analysis.</p>
+    </section>
+
+    <section class="content-section" id="about">
+        <h2 class="section-title">About This Tool</h2>
+        <p>This tool leverages cutting-edge algorithms to analyze emails, detect phishing patterns, and provide actionable insights to secure your digital communications.</p>
+    </section>
+
+    <section class="content-section" id="features">
+        <h2 class="section-title">Features</h2>
+        <div class="features">
+            <div class="card">
+                <h3>Real-Time Analysis</h3>
+                <p>Analyze emails instantly to detect phishing patterns and threats.</p>
+            </div>
+            <div class="card">
+                <h3>Keyword Detection</h3>
+                <p>Identify phishing attempts based on suspicious keywords.</p>
+            </div>
+            <div class="card">
+                <h3>Suspicious URL Detection</h3>
+                <p>Flag URLs that may lead to malicious websites.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="problems">
+        <h2 class="section-title">Phishing Problems</h2>
+        <div class="problems">
+            <div class="card">
+                <img src="static/images/phishing-example1.jpg" alt="Phishing Example">
+                <p>Phishing attacks trick users into sharing sensitive information.</p>
+            </div>
+            <div class="card">
+                <img src="static/images/phishing-example2.jpg" alt="Phishing Email">
+                <p>Emails that mimic legitimate organizations to steal credentials.</p>
+            </div>
+        </div>
+    </section>
+    <section class="content-section" id="how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <ol>
+            <li><p>Connect your email securely using our tool.</p></li>
+            <li><p>Scan incoming emails for suspicious links, keywords, and phishing patterns.</p></li>
+            <li><p>View a detailed analysis report with a phishing score for each email.</p></li>
+            <li><p>Take immediate action on flagged emails to secure your account.</p></li>
+        </ol>
+    </section>
+    
+
+    <footer>
+        <p>&copy; 2024 Phishing Email Detection Tool. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

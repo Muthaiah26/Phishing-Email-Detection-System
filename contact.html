@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    @keyframes fadeInZoom {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .contact {
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        color: #333;
+        animation: fadeInZoom 1s ease-out;
+
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.0rem;
+        color: #333;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #b3e9ce;
+    }
+
+    .form-group label {
+        position: absolute;
+        top: 0.75rem;
+        left: 0.75rem;
+        font-size: 1rem;
+        color: #aaa;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus + label,
+    .form-group textarea:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:not(:placeholder-shown) + label {
+        top: -15.2px;
+        left: 0.5rem;
+        font-size: 0.875rem;
+        color: #0f0f0f;
+    }
+
+    .form-group textarea {
+        resize: none;
+        height: 100px;
+    }
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #000000;
+        z-index: 1000;
+        display: flex;
+        align-items: center; 
+        padding: 0 20px; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        animation: fadeInZoom 1s ease-out;
+
+    }
+
+    .navbar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center; 
+        justify-content: right;
+        margin-right: 10px;
+        flex-grow: 1;
+    }
+
+    .navbar ul li {
+        margin: 0 10px; 
+    }
+
+    .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        display: block;
+    }
+
+    .navbar ul li a:hover {
+        background-color: #575757;
+    }
+
+    .logo {
+        max-height: 50px; 
+        width: auto; 
+        margin-right: 15px;
+        margin-left: 20px;
+    }
+    .btn {
+        background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+        background: linear-gradient(135deg, #ACB6E5, #74ebd5);
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="/static/images/logo.png" alt="logo">
+
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Sign up</a></li>
+          <li><a href="/services">Tool</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    <div class="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name"  required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email:</label>
+
+            <input type="email" id="email"  required>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message:</label>
+            <textarea id="message"  required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+    </div>
+      
+</body>
+</html>
